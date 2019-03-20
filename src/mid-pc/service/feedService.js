@@ -13,7 +13,8 @@ router.get("/des", async (ctx, next) => {
     dataObj = r.data;
     await ctx.render('index', dataObj.data);
   });
-  // await next();
+  await next();
+  console.log('/des ===== ')
 });
 
 router.get("/feedList", async (ctx, next) => {
@@ -22,7 +23,7 @@ router.get("/feedList", async (ctx, next) => {
   await api.get(ctx.path).then(async (r) => {
     dataObj = r.data;
   });
-  let dataObj2 = {}
+  let dataObj2 = {};
   await api.get('/des').then(async (r) => {
     dataObj2 = r.data.data;
   });
@@ -33,6 +34,7 @@ router.get("/feedList", async (ctx, next) => {
   });
 
   await next();
+  console.log('/feedList =====')
 });
 
 router.post("/addFeed", async (ctx, next) => {
@@ -40,6 +42,7 @@ router.post("/addFeed", async (ctx, next) => {
     ctx.body = r.data;
   });
   await next();
+  console.log('/addFeed=====')
 });
 
 
