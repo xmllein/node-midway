@@ -2,20 +2,19 @@ doctype html
 html
     head
         meta(charset='utf-8')
+        meta(name="referrer" content="never")
         link(rel="shortcut icon",href="/img/favicon.ico",type="image/x-icon")
         title= a
         link(rel='stylesheet',type='text/css',href='/css/index.css')
     body
-        h1 hello pug 3
-        // 解析变量
-        p= a
-        ul
-        each item in list
-            li= item.a
-        p= message
-        div
-            button(id="testMock") hello mock
-            button(id="proxyMock") hello proxyMock
+        h1 豆瓣数据
+
+        ul(id="douban")
+            each item in list
+                li
+                    a(title=item.title href="/subject/"+item.id)
+                        img(src=item.images.large)
+                        h4=item.title
 
         script(src="/js/jquery.js")
         script(src="/js/index.js")

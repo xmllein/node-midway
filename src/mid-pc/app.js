@@ -6,7 +6,11 @@ const compress = require('koa-compress');
 const static = require('koa-static');
 const app = new Koa();
 
+process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : 'production';
 
+let isDev = process.env.NODE_ENV === 'development';
+
+console.log(isDev);
 
 app.use(logger());
 
@@ -27,9 +31,10 @@ app.use(views(path.join(__dirname, './views'), {
 }));
 
 router.get("/", async (ctx, next) => {
+
   await ctx.render('index', {
     a: "我是首页10",
-    list: [{a: "首页文章10"}, {a: "首页文章20"}],
+    list: [{a: "首页文章10"}, {a: "首页文章200000"}],
     message: 'midway'
   });
   await next();
@@ -38,4 +43,6 @@ router.get("/", async (ctx, next) => {
 app.use(router.routes()).use(router.allowedMethods());
 
 const port = 3005;
-app.listen(port);
+app.listen(port, () => {
+    console.log(`listen on ${port}`);
+});

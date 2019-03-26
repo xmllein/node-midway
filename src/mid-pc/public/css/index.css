@@ -1,4 +1,28 @@
+html, body {
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style-type: none; }
+
 body {
   font: 100% Helvetica, sans-serif;
   color: #333;
   background: pink; }
+
+#douban {
+  overflow: hidden;
+  padding: 20px; }
+  #douban li {
+    height: 430px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 20px; }
+    #douban li a {
+      display: block; }
+      #douban li a img {
+        width: 250px;
+        height: 400px; }
+      #douban li a h4 {
+        margin: 5px 0;
+        text-align: center; }

@@ -1,5 +1,6 @@
 const Router = require("koa-router");
 const router = new Router();
+const axios = require('axios');
 
 const apiAdapter = require("./../adapter/http-adapter");
 
@@ -20,13 +21,28 @@ router.get("/des", async (ctx, next) => {
 router.get("/feedList", async (ctx, next) => {
 
   let dataObj = {};
-  await api.get(ctx.path).then(async (r) => {
-    dataObj = r.data;
-  });
+  // await api.get(ctx.path).then(async (r) => {
+  //   dataObj = r.data;
+  // });
   let dataObj2 = {};
-  await api.get('/des').then(async (r) => {
-    dataObj2 = r.data.data;
-  });
+  // await api.get('/des').then(async (r) => {
+  //   dataObj2 = r.data.data;
+  // });
+
+  let axiosList=[
+    api.get(ctx.path),
+    api.get('/des'),
+  ];
+
+
+  // axios.all() 并发请求
+  await axios.all(axiosList).then(axios.spread(function(res1,res2){
+    console.log(res1.data,res2.data.data);//分别是两个请求的返回值
+    dataObj = res1.data;
+    dataObj2 = res2.data.data;
+  }));
+
+
 
   await ctx.render('index', {
     a: `${dataObj2.a} feedList`,

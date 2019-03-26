@@ -1,9 +1,38 @@
 $font-stack: Helvetica, sans-serif;
 $primary-color: #333;
 $pink-color: pink;
-
+html,body{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style-type: none;
+}
 body {
 	font: 100% $font-stack;
 	color: $primary-color;
 	background: $pink-color;
 }
+
+#douban{
+	overflow: hidden;
+	padding: 20px;
+	li{
+		height: 430px;
+		float: left;
+		margin-right: 10px;
+		margin-bottom: 20px;
+		a{
+			display: block;
+			img{
+				width: 250px;
+				height: 400px;
+			}
+			h4{
+				margin: 5px 0;
+				text-align: center;
+			}
+		}
+	}
+}
+
